@@ -1,7 +1,8 @@
+using System;
+using System.Device.Gpio;
 using nanoFramework.Hosting;
-using System.Diagnostics;
-using System.Threading;
 using nanoFramework.DependencyInjection;
+using WebServer.Controllers;
 using WebServer.Lib;
 
 namespace WebServer
@@ -22,8 +23,17 @@ namespace WebServer
                         new ServiceDescriptor(
                             typeof(WiFiConfig),
                             new WiFiConfig("GoAway", "D@n1elSiAnca")));
+                    services.TryAdd(
+                        new ServiceDescriptor(
+                            typeof(WebApiConfig),
+                            new WebApiConfig(
+                                80,
+                                false,
+                                new Type[]{typeof(ControllerApi)})));
 
                     services.AddSingleton(typeof(WiFi));
+                    services.AddSingleton(typeof(GpioController));
+                    services.AddSingleton(typeof(WebApi));
                     services.AddHostedService(typeof(Worker));
                 });
     }
