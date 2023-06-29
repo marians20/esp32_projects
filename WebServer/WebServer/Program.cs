@@ -1,5 +1,6 @@
 using System;
 using System.Device.Gpio;
+using Windows.Storage;
 using nanoFramework.Hosting;
 using nanoFramework.DependencyInjection;
 using WebServer.Controllers;
@@ -30,6 +31,10 @@ namespace WebServer
                                 80,
                                 false,
                                 new Type[]{typeof(ControllerApi)})));
+                    services.TryAdd(
+                        new ServiceDescriptor(
+                            typeof(StorageFolder),
+                            KnownFolders.RemovableDevices.GetFolders()[0]));
 
                     services.AddSingleton(typeof(WiFi));
                     services.AddSingleton(typeof(GpioController));

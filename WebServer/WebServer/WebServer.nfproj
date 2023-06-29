@@ -19,6 +19,8 @@
   <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.props" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.props')" />
   <ItemGroup>
     <Compile Include="Controllers\ControllerApi.cs" />
+    <Compile Include="Dtos\NamedMessage.cs" />
+    <Compile Include="Lib\WebApi\Extensions\WebServerEventArgsExtensions.cs" />
     <Compile Include="Lib\WebApi\WebApi.cs" />
     <Compile Include="Lib\WebApi\WebApiConfig.cs" />
     <Compile Include="Lib\WiFi\WiFi.cs" />
@@ -36,6 +38,9 @@
     </Reference>
     <Reference Include="nanoFramework.Hosting">
       <HintPath>..\packages\nanoFramework.Hosting.1.0.25\lib\nanoFramework.Hosting.dll</HintPath>
+    </Reference>
+    <Reference Include="nanoFramework.Json">
+      <HintPath>..\packages\nanoFramework.Json.2.2.99\lib\nanoFramework.Json.dll</HintPath>
     </Reference>
     <Reference Include="nanoFramework.Runtime.Events">
       <HintPath>..\packages\nanoFramework.Runtime.Events.1.11.6\lib\nanoFramework.Runtime.Events.dll</HintPath>

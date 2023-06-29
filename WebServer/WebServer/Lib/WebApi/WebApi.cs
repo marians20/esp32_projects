@@ -1,15 +1,20 @@
-﻿using nanoFramework.WebServer;
+﻿using System;
+using System.Diagnostics;
+using nanoFramework.WebServer;
 using System.Threading;
+using Windows.Storage;
 
 namespace WebServer.Lib
 {
     public class WebApi
     {
         private readonly WebApiConfig config;
+        private readonly StorageFolder storage;
 
-        public WebApi(WebApiConfig config)
+        public WebApi(WebApiConfig config, StorageFolder storage)
         {
             this.config = config;
+            this.storage = storage;
         }
 
         public nanoFramework.WebServer.WebServer Server
@@ -32,9 +37,16 @@ namespace WebServer.Lib
 
         public void Start()
         {
-            using var server = Server;
-            server.Start();
-            Thread.Sleep(Timeout.Infinite);
+            try
+            {
+                using var server = Server;
+                server.Start();
+                Thread.Sleep(Timeout.Infinite);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+            }
         }
     }
 }
