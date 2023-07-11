@@ -1,4 +1,6 @@
 ﻿using System;
+// ReSharper disable InconsistentNaming
+#pragma warning disable IDE1006 // Naming Styles
 
 namespace WebServer.Dtos
 {
@@ -11,6 +13,7 @@ namespace WebServer.Dtos
             utcTimeStamp = DateTime.UtcNow;
         }
 
+
         public string name { get; }
 
         public string message { get; }
@@ -18,3 +21,5 @@ namespace WebServer.Dtos
         public DateTime utcTimeStamp { get; }
     }
 }
+
+#pragma warning restore IDE1006 // Naming Styles

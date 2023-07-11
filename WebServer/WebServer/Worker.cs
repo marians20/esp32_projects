@@ -20,7 +20,8 @@ namespace WebServer
             led = gpioController.OpenPin(2, PinMode.Output);
             this.wifi = wifi;
             this.webApi = webApi;
-            this.wifi.Connect();
+            //this.wifi.Connect();
+            this.wifi.ScanNetworks();
         }
 
         protected override void ExecuteAsync()
@@ -43,7 +44,6 @@ namespace WebServer
             });
 
             thd.Start();
-            Debug.WriteLine($"Ip Address is {wifi.IpAddress}");
             webApi.Start();
         }
     }

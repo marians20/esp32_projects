@@ -1,7 +1,6 @@
 ﻿using nanoFramework.Json;
 using nanoFramework.WebServer;
 using WS = nanoFramework.WebServer;
-using System.Net;
 
 namespace WebServer.Lib.Extensions
 {

@@ -9,12 +9,10 @@ namespace WebServer.Lib
     public class WebApi
     {
         private readonly WebApiConfig config;
-        private readonly StorageFolder storage;
 
         public WebApi(WebApiConfig config, StorageFolder storage)
         {
             this.config = config;
-            this.storage = storage;
         }
 
         public nanoFramework.WebServer.WebServer Server
@@ -26,11 +24,13 @@ namespace WebServer.Lib
                     config.UseTls ? HttpProtocol.Https : HttpProtocol.Http,
                     config.Controllers);
 
-                if (config.UseTls)
+                if (!config.UseTls)
                 {
-                    server.HttpsCert = config.Certificate;
-                    server.SslProtocols = System.Net.Security.SslProtocols.Tls11 | System.Net.Security.SslProtocols.Tls12;
+                    return server;
                 }
+
+                server.HttpsCert = config.Certificate;
+                server.SslProtocols = System.Net.Security.SslProtocols.Tls11 | System.Net.Security.SslProtocols.Tls12;
                 return server;
             }
         }
